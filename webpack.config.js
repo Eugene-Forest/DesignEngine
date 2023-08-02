@@ -2,7 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: './src/index.ts',
+    entry: {
+        main:'./src/index.ts'
+    },
     devtool: 'inline-source-map',
     module: {
         rules: [
@@ -17,12 +19,14 @@ module.exports = {
         extensions: [ '.tsx', '.ts', '.js' ],
     },
     output: {
-        filename: 'index.js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
+        clean: true,//清空原来的输出
     },
     plugins: [new HtmlWebpackPlugin({
-        filename: "index.html",
-        template: "./public/index.html",
-        chunks: ["message"]
+        filename: "index.html",//输出文件名
+        template: "./public/index.html",//模板html
+        inject: "head",//注入资源的位置
+        chunks: ["main"],//注入资源的entry入口限定
     })],
 };
