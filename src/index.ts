@@ -1,7 +1,8 @@
+import {MainApplication} from "./Application/MainApplication";
 
 
 window.onload = ()=>{
     // @ts-ignore
-    window["message"] = {text:"Hello world"};
-    console.log("hello world")
+    window['app'] = new MainApplication();
+
 }
