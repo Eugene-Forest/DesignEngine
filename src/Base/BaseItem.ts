@@ -3,7 +3,7 @@ import {Painter} from '../Canvas/Painter';
 import {BaseClassName, rePainterType} from "../Helper/GraphInterfacType";
 import {PixiBrush} from "../Canvas/PixiBrush";
 import { Container } from 'pixi.js';
-import {Serializable} from "../serialize/Serializable";
+import {Serializable} from "../Serialize/Serializable";
 
 /**
  * 用来体现图形包含关系的类

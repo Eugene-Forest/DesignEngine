@@ -1,4 +1,3 @@
-import {CanvasApplication} from "./CanvasApplication";
 import {BaseDesign} from "../Base/BaseDesign";
 
 
