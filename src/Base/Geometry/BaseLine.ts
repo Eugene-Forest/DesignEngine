@@ -1,8 +1,12 @@
 import {BaseItem} from "../BaseItem";
 import {BasePoint} from "./BasePoint";
 
-
-export class BaseLine extends BaseItem{
+/**
+ * @author Eugene-Forest
+ * @date 2023/8/9
+ * @description 画图基础线
+ **/
+export class BaseLine extends BaseItem {
 
     private _startPoint: BasePoint;
     private _endPoint: BasePoint;

@@ -1,7 +1,11 @@
 import {BaseItem} from "../BaseItem";
 
-
-export class BasePoint extends BaseItem{
+/**
+ * @author Eugene-Forest
+ * @date 2023/8/9
+ * @description 画图基础点
+ **/
+export class BasePoint extends BaseItem {
     private _x: number;
     private _y: number;
 

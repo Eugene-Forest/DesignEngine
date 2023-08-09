@@ -1,13 +1,15 @@
-import { Brush } from './Brush';
+import {Brush} from './Brush';
 
 /**
- * 用来定义画图基础功能
- */
+ * @author Eugene-Forest
+ * @date 2023/8/9
+ * @description 用来定义画图基础功能
+ **/
 export interface Painter {
 
-	/**
-	 * 画图方法
-	 * @param {Brush} painter
-	 */
-	paint(painter: Brush): void;
+    /**
+     * 画图方法
+     * @param {Brush} painter
+     */
+    paint(painter: Brush): void;
 }

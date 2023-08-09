@@ -5,8 +5,10 @@ import {EventBo} from "../BO/EventBo";
 import {ListeningType} from "../Helper/GraphInterfacType";
 
 /**
- * 作为画布基础
- */
+ * @author Eugene-Forest
+ * @date 2023/8/9
+ * @description 作为画布基础
+ **/
 export class BaseDesign<PixiArgs extends PixiBrush, SvgArgs extends SvgBrush> {
     /** 画布宽度 */
     private _width: number = 800;
@@ -22,7 +24,7 @@ export class BaseDesign<PixiArgs extends PixiBrush, SvgArgs extends SvgBrush> {
     /** 步骤保存 */
     private _steps: string[] = [];
 
-    private _listeningType:ListeningType = ListeningType.BaseCanvas;
+    private _listeningType: ListeningType = ListeningType.BaseCanvas;
 
     private readonly _pixiPainter: PixiArgs | PixiBrush;
 
@@ -101,15 +103,16 @@ export class BaseDesign<PixiArgs extends PixiBrush, SvgArgs extends SvgBrush> {
             return this._pixiPainter;
         }
     }
-    public getStage(){
+
+    public getStage() {
         return this._pixiPainter.stage;
     }
 
-    public getContainer(){
+    public getContainer() {
         return this._pixiPainter.container;
     }
 
-    public getBaseCanvas(){
+    public getBaseCanvas() {
         return this._pixiPainter.baseCanvasRect;
     }
 
@@ -121,7 +124,7 @@ export class BaseDesign<PixiArgs extends PixiBrush, SvgArgs extends SvgBrush> {
         if (pixiPainter) {
             this._pixiPainter = pixiPainter;
         } else {
-            if(!parentEle){
+            if (!parentEle) {
                 parentEle = document.createElement("div");
                 parentEle.className = "renderFor2d";
                 document.body.append(parentEle);
@@ -151,30 +154,30 @@ export class BaseDesign<PixiArgs extends PixiBrush, SvgArgs extends SvgBrush> {
         this.getBaseCanvas().interactive = true;
         let stage = this.getStage();
         let isInSage = false;
-        stage.on("mousedown",(event:PIXI.InteractionEvent)=>{
+        stage.on("mousedown", (event: PIXI.InteractionEvent) => {
             console.log("左键点下")
         })
-        this.getBaseCanvas().on("pointerover",(event:PIXI.InteractionEvent)=>{
+        this.getBaseCanvas().on("pointerover", (event: PIXI.InteractionEvent) => {
             console.log("进入舞台")
             isInSage = true;
         })
-        stage.on("mousemove",(event:PIXI.InteractionEvent)=>{
-            if(isInSage){
+        stage.on("mousemove", (event: PIXI.InteractionEvent) => {
+            if (isInSage) {
                 console.log("移动")
             }
         })
-        this.getBaseCanvas().on("pointerout",(event:PIXI.InteractionEvent)=>{
+        this.getBaseCanvas().on("pointerout", (event: PIXI.InteractionEvent) => {
             console.log("离开舞台")
-            isInSage=false;
+            isInSage = false;
         })
-        stage.on("mouseup",(event:PIXI.InteractionEvent)=>{
+        stage.on("mouseup", (event: PIXI.InteractionEvent) => {
             console.log("左键提起")
         })
         //滚轮事件
-        stage.on("wheel",(event:PIXI.InteractionEvent)=>{
+        stage.on("wheel", (event: PIXI.InteractionEvent) => {
             console.log("滚轮")
         })
-        stage.on("rightdown",(event:PIXI.InteractionEvent)=>{
+        stage.on("rightdown", (event: PIXI.InteractionEvent) => {
             console.log("右键")
         })
     }
@@ -182,35 +185,35 @@ export class BaseDesign<PixiArgs extends PixiBrush, SvgArgs extends SvgBrush> {
     /**
      * 初始化核心画图容器的事件监听
      */
-    public initContainerListener(){
+    public initContainerListener() {
         console.log("初始化核心画图容器监听初始化")
         this._listeningType = ListeningType.Container;
         this.getContainer().interactive = true;
         let isInSage = false;
-        this.getContainer().on("mousedown",(event:PIXI.InteractionEvent)=>{
+        this.getContainer().on("mousedown", (event: PIXI.InteractionEvent) => {
             console.log("左键点下")
         })
-        this.getContainer().on("pointerover",(event:PIXI.InteractionEvent)=>{
+        this.getContainer().on("pointerover", (event: PIXI.InteractionEvent) => {
             console.log("进入舞台")
             isInSage = true;
         })
-        this.getContainer().on("mousemove",(event:PIXI.InteractionEvent)=>{
-            if(isInSage){
+        this.getContainer().on("mousemove", (event: PIXI.InteractionEvent) => {
+            if (isInSage) {
                 console.log("移动")
             }
         })
-        this.getContainer().on("pointerout",(event:PIXI.InteractionEvent)=>{
+        this.getContainer().on("pointerout", (event: PIXI.InteractionEvent) => {
             console.log("离开舞台")
-            isInSage=false;
+            isInSage = false;
         })
-        this.getContainer().on("mouseup",(event:PIXI.InteractionEvent)=>{
+        this.getContainer().on("mouseup", (event: PIXI.InteractionEvent) => {
             console.log("左键提起")
         })
         //滚轮事件
-        this.getContainer().on("wheel",(event:PIXI.InteractionEvent)=>{
+        this.getContainer().on("wheel", (event: PIXI.InteractionEvent) => {
             console.log("滚轮")
         })
-        this.getContainer().on("rightdown",(event:PIXI.InteractionEvent)=>{
+        this.getContainer().on("rightdown", (event: PIXI.InteractionEvent) => {
             console.log("右键")
         })
     }
@@ -218,7 +221,7 @@ export class BaseDesign<PixiArgs extends PixiBrush, SvgArgs extends SvgBrush> {
     /**
      * 销毁核心画图容器的事件监听
      */
-    public destroyContainerListener(){
+    public destroyContainerListener() {
         console.log("销毁核心画图容器的事件监听")
         //设置为不可交互
         this.getContainer().interactive = false;
@@ -229,7 +232,7 @@ export class BaseDesign<PixiArgs extends PixiBrush, SvgArgs extends SvgBrush> {
     /**
      *  销毁基础画布矩形的事件监听
      */
-    public destroyBaseCanvasListener(){
+    public destroyBaseCanvasListener() {
         console.log("销毁基础画布矩形的事件监听")
         //设置不可交互
         this.getBaseCanvas().interactive = false;
@@ -240,25 +243,25 @@ export class BaseDesign<PixiArgs extends PixiBrush, SvgArgs extends SvgBrush> {
     /**
      * 销毁画布
      */
-    public destroy(isCleanWindowMount:boolean=true){
+    public destroy(isCleanWindowMount: boolean = true) {
         //清空事件
 
         //释放pixi默认资源
         let resources = this._pixiPainter.getResourceLoader().resources;
-        for(let name in resources){
-            if(resources.hasOwnProperty(name)){
+        for (let name in resources) {
+            if (resources.hasOwnProperty(name)) {
                 let ele = resources[name];
                 ele.texture.destroy(true);
             }
         }
         this._pixiPainter.destroy(true);
         //清空window挂载的资源
-        if(isCleanWindowMount){
+        if (isCleanWindowMount) {
             this.destroyWindowMount();
         }
     }
 
-    public destroyWindowMount(){
+    public destroyWindowMount() {
         delete window["PIXI"]
     }
 }

@@ -1,10 +1,12 @@
 import {Brush} from "./Brush";
 import {deColor, rePainterType} from "../Helper/GraphInterfacType";
-import {Application, Container, Graphics, Loader, Sprite} from "pixi.js";
+import {Application, Container, Graphics, Loader} from "pixi.js";
 
 /**
- * 封装 pixi.js 画笔
- */
+ * @author Eugene-Forest
+ * @date 2023/8/9
+ * @description 封装 pixi.js 画笔
+ **/
 export class PixiBrush extends Brush {
     /** pixi app */
     private readonly _pixiApplication: Application;
@@ -41,7 +43,7 @@ export class PixiBrush extends Brush {
      * 获取画布舞台
      * @returns {Container}
      */
-    public get stage(){
+    public get stage(): Container {
         return this._pixiApplication.stage;
     }
 
@@ -49,7 +51,7 @@ export class PixiBrush extends Brush {
      * 获取画布 HTML 元素
      * @returns {HTMLCanvasElement}
      */
-    public get viewEle(){
+    public get viewEle(): HTMLCanvasElement {
         return this._pixiApplication.view;
     }
 
@@ -84,10 +86,10 @@ export class PixiBrush extends Brush {
         parentElement.appendChild(this._pixiApplication.view);
         // globalThis.__PIXI_APP__ = this.pixiApplication;
         //初始化基础画布矩形，用以出发一系列鼠标事件
-        let initScale =  0.3;
+        let initScale = 0.3;
         this._baseCanvasRect = new Graphics();
-        this._baseCanvasRect.beginFill(deColor.white,0.1);
-        this._baseCanvasRect.drawRect(0,0,width/initScale,height/initScale);
+        this._baseCanvasRect.beginFill(deColor.white, 0.1);
+        this._baseCanvasRect.drawRect(0, 0, width / initScale, height / initScale);
         this._baseCanvasRect.endFill();
         this._pixiApplication.stage.addChild(this.baseCanvasRect);
         //创建画图结果容器
@@ -108,7 +110,7 @@ export class PixiBrush extends Brush {
         //目录基础路径基于项目根目录
         const avatar = new Graphics();
         avatar.beginFill();
-        avatar.drawRect(0,0,100,100);
+        avatar.drawRect(0, 0, 100, 100);
         avatar.endFill();
         avatar.scale.set(0.5, 0.5);
         // 居中展示
@@ -140,11 +142,11 @@ export class PixiBrush extends Brush {
         this.renderCanvas();
     }
 
-    public destroy(removeView:boolean){
+    public destroy(removeView: boolean) {
         this._pixiApplication.destroy(removeView);
     }
 
-    public getResourceLoader(): Loader{
+    public getResourceLoader(): Loader {
         return this._pixiApplication.loader;
     }
 

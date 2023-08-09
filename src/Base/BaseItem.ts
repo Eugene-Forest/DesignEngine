@@ -2,13 +2,15 @@ import {Brush} from '../Canvas/Brush';
 import {Painter} from '../Canvas/Painter';
 import {BaseClassName, rePainterType} from "../Helper/GraphInterfacType";
 import {PixiBrush} from "../Canvas/PixiBrush";
-import { Container } from 'pixi.js';
+import {Container} from 'pixi.js';
 import {Serializable} from "../Serialize/Serializable";
 
 /**
- * 用来体现图形包含关系的类
- */
-export class BaseItem implements Painter,Serializable{
+ * @author Eugene-Forest
+ * @date 2023/8/9
+ * @description 用来体现图形包含关系的基类
+ **/
+export class BaseItem implements Painter, Serializable {
 
     //#region 属性
 
@@ -28,7 +30,7 @@ export class BaseItem implements Painter,Serializable{
     /**
      * 用来表示当前对象当前状态的标识符；可以用来识别当前对象是否改变
      */
-    private _uuid : number = 0;
+    private _uuid: number = 0;
     /**
      * 用来判断是否需要重新画图的标识符
      */
@@ -39,9 +41,10 @@ export class BaseItem implements Painter,Serializable{
      * @type {boolean}
      * @private
      */
-    private _isInteractive:boolean = false;
+    private _isInteractive: boolean = false;
 
-    private _itemGraphs : Container;
+    private _itemGraphs: Container;
+
     //#endregion 属性
 
 
@@ -62,10 +65,11 @@ export class BaseItem implements Painter,Serializable{
     constructor();
     constructor(childItems: BaseItem[], parentItem: BaseItem) ;
     constructor(childItems?: BaseItem[], parentItem?: BaseItem) {
-        this._childItems = childItems||null;
-        this._parentItem = parentItem||null;
+        this._childItems = childItems || null;
+        this._parentItem = parentItem || null;
         this._itemGraphs = new PIXI.Container();
-    }    
+    }
+
     //#endregion 构造函数
 
     //#region 存取器
@@ -116,17 +120,17 @@ export class BaseItem implements Painter,Serializable{
 
     //#region 函数
 
-    public updateUUID(){
+    public updateUUID() {
         this._uuid++;
     }
-    
+
     //#region 函数实现与重写
-    
+
     paint(painter: Brush): void {
         //判断是否需要重画
-        if(this._isDrawChange){
+        if (this._isDrawChange) {
             //找到原来的图，清空掉
-            if(painter.PainterType==rePainterType.Pixi){
+            if (painter.PainterType == rePainterType.Pixi) {
                 (<PixiBrush>painter).container
             }
 
@@ -136,12 +140,15 @@ export class BaseItem implements Painter,Serializable{
     Serialize(): void {
         throw new Error('Method not implemented.');
     }
+
     DeSerialize(): void {
         throw new Error('Method not implemented.');
     }
+
     DeSerializeRef(): void {
         throw new Error('Method not implemented.');
     }
+
     //#endregion 函数实现与重写
 
     //#endregion 函数

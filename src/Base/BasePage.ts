@@ -5,10 +5,12 @@ import {BaseItem} from "./BaseItem";
 import {BaseClassName} from "../Helper/GraphInterfacType";
 
 /**
- * 画图引擎的基础画布
- */
-export class BasePage<PixiArgs extends PixiBrush, SvgArgs extends SvgBrush,Design extends BaseDesign<PixiArgs, SvgArgs>>
-    extends BaseItem{
+ * @author Eugene-Forest
+ * @date 2023/8/9
+ * @description 画图引擎的基础画图容器
+ **/
+export class BasePage<PixiArgs extends PixiBrush, SvgArgs extends SvgBrush, Design extends BaseDesign<PixiArgs, SvgArgs>>
+    extends BaseItem {
 
     private _design: Design;
     /** 父级挂载元素 */
@@ -36,7 +38,7 @@ export class BasePage<PixiArgs extends PixiBrush, SvgArgs extends SvgBrush,Desig
         this._parentEle = parentEle;
     }
 
-    public initCanvas(design:Design){
-        this._design=design;
+    public initCanvas(design: Design) {
+        this._design = design;
     }
 }
