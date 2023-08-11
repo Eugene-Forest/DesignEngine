@@ -2,8 +2,8 @@ import {Brush} from '../Canvas/Brush';
 import {Painter} from '../Canvas/Painter';
 import {BaseClassName, rePainterType} from "../Helper/GraphInterfacType";
 import {PixiBrush} from "../Canvas/PixiBrush";
-import {Container} from 'pixi.js';
 import {Serializable} from "../Serialize/Serializable";
+import {Container} from "pixi.js-legacy";
 
 /**
  * @author Eugene-Forest
@@ -57,7 +57,7 @@ export class BaseItem implements Painter, Serializable {
     }
 
 
-    public get itemGraphs(): PIXI.Container {
+    public get itemGraphs(): Container {
         return this._itemGraphs;
     }
 

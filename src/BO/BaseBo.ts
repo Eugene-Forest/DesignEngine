@@ -1,4 +1,4 @@
-import {Container, DisplayObject, Sprite, Text} from "pixi.js";
+import {Container, DisplayObject, Sprite, Text} from "pixi.js-legacy";
 
 
 export let BaseBo = {

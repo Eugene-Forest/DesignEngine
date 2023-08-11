@@ -1,6 +1,6 @@
 import {Brush} from "./Brush";
 import {deColor, rePainterType} from "../Helper/GraphInterfacType";
-import {Application, Container, Graphics, Loader} from "pixi.js";
+import {Application, BitmapText, Container, Graphics, Loader} from "pixi.js-legacy";
 
 /**
  * @author Eugene-Forest
@@ -14,7 +14,7 @@ export class PixiBrush extends Brush {
     private readonly _container: Container;
     /**
      * 用以触发事件的矩形图形，所有的后续图形应当在其范围内
-     * @type {PIXI.Graphics}
+     * @type {Graphics}
      * @private
      */
     private readonly _baseCanvasRect: Graphics;
@@ -139,6 +139,13 @@ export class PixiBrush extends Brush {
         this.container.addChild(circle);
 
         avatar.mask = circle;
+        let bitmapText = new BitmapText("测试 text using a fancy font!", {
+            fontName: "新宋体",
+            fontSize: 20,
+            align: "right"
+        });
+        this.container.addChild(bitmapText)
+
         this.renderCanvas();
     }
 
