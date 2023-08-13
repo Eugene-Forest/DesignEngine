@@ -116,18 +116,25 @@ export class BaseDesign<PixiArgs extends PixiBrush, SvgArgs extends SvgBrush> {
         return this._pixiPainter.baseCanvasRect;
     }
 
-    constructor(parentEle?: HTMLElement, width?: number, height?: number, isAutoRender?: boolean, pixiPainter?: PixiArgs, svgPainter?: SvgArgs, eventBo?: EventBo) {
+    constructor(parentEelId?: string, width?: number, height?: number, isAutoRender?: boolean, pixiPainter?: PixiArgs, svgPainter?: SvgArgs, eventBo?: EventBo) {
         this._width = width ? width : 800;
         this._height = height ? height : 800;
         this._isAutoRender = isAutoRender;
+        let parentEle:HTMLElement;
         //初始化画笔
         if (pixiPainter) {
             this._pixiPainter = pixiPainter;
         } else {
-            if (!parentEle) {
+            if (!parentEelId) {
                 parentEle = document.createElement("div");
                 parentEle.className = "renderFor2d";
                 document.body.append(parentEle);
+            } else{
+                parentEle = document.getElementById(parentEelId);
+                if(!parentEle){
+                    //TODO: waiting to refactor
+                    throw Error('没有找到 id 为 ['+ parentEelId +'] 的 Html 元素，无法挂载画布！！');
+                }
             }
             this._pixiPainter = new PixiBrush(
                 parentEle,

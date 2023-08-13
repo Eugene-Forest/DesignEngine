@@ -1,4 +1,6 @@
 import {BaseDesign} from "../Base/BaseDesign";
+import {PixiBrush} from "../Canvas/PixiBrush";
+import {SvgBrush} from "../Canvas/SvgBrush";
 
 /**
  * @author Eugene-Forest
@@ -7,8 +9,10 @@ import {BaseDesign} from "../Base/BaseDesign";
  **/
 export class MainApplication {
 
-    public createCanvas() {
-        let design = new BaseDesign();
-        design.getPainter(false).paintSomething();
+    private _design:BaseDesign<PixiBrush, SvgBrush>;
+
+    public createCanvas(width?:number,height?:number,parentEelId?:string){
+        this._design = new BaseDesign(parentEelId, width, height);
     }
+
 }

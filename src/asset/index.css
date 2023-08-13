@@ -7,6 +7,43 @@
  */
 
 
-header {
-    background-color: bisque;
+.header {
+    background-color: aliceblue;
+    display: block;
+    float: left;
+    width: 100%;
+    border-radius: 3px;
+    padding: 1px;
+}
+
+.main {
+    background: antiquewhite;
+    float: left;
+    width: 100%;
+    border-radius: 3px;
+    padding: 1px;
+}
+
+.main .renderFor2d {
+    height: 800px;
+    width: 800px;
+    border-radius: 1px;
+    float: left;
+}
+.main .rightMenu {
+    width: auto;
+    height: auto;
+    background-color: olivedrab;
+    float: left;
+    border-radius: 1px;
+
+}
+
+.footer {
+    background: aliceblue;
+    display: block;
+    float: left;
+    width: 100%;
+    border-radius: 3px;
+    padding: 1px;
 }
