@@ -96,6 +96,7 @@ export class BaseItem implements Painter, Serializable {
 
     public set parentItem(value: BaseItem) {
         this._parentItem = value;
+        //TODO: 命名
     }
 
     public get name(): string {
